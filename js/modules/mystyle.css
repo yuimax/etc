@@ -1,0 +1,27 @@
+p {
+	margin-left: 2em;
+}
+div.box {
+	border: 1px solid gray;
+	padding: 8px 16px;
+	margin: 8px 0px;
+}
+h2 {
+	margin-top: 24px;
+}
+
+div.test button {
+	width: 200px;
+	text-align: left;
+	font-family: monospace, monospace;
+	font-weight: bold;
+	font-size: 100%;
+}
+
+div.test input {
+	font-size: 100%;
+}
+em {
+	color: #007f00;
+	font-style: normal;
+}

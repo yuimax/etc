@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>IPアドレス表示</title>
+<script src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+</head>
+<body onLoad="init();">
+<form>
+<div id="main">
+<h1>自分のIPアドレス</h1>
+<table>
+<tr><td style="padding-top:4px;">IPv4<td class="inp"><input id="ipv4" type="text" size="50">
+<tr><td style="padding-top:4px;">IPv6<td class="inp"><input id="ipv6" type="text" size="50">
+</table>
+<p><button type="button" onClick="check();">自分のIPアドレスを調べる</button></p>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+</div>
+</form>
+</body>
+</html>

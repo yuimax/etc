@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>DLスピード計測</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<style>#main div { line-height:200%; padding-left:16px; }</style>
+<script src="script.js"></script>
+</head>
+
+<body onLoad="init();">
+<div id="main">
+<h1>DLスピード計測</h1>
+<div style="float:left;">
+<textarea id="log" cols="24" rows="16"></textarea>
+</div>
+<div style="float:left;">
+経過 <input id="progress" size="20"><br>
+時間 <input id="time" size="20"><br>
+状態 <input id="stat" size="20"><br>
+開始 <button id="bstart" type="button" onClick="test();">テスト開始</button>
+</div>
+<div style="clear:both; height:10px;"></div>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+</div>
+</body>
+
+</html>

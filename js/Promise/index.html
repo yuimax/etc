@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Promiseと同期処理</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<script src="script.js"></script>
+<style>
+#main div { padding-left:16px; }
+input { font-size:100%; }
+button { font-size:100%; width:200px; text-align:left; }
+textarea { line-height:112.5%; width:440px; }
+</style>
+</head>
+
+<body onload="clear();">
+<div id="main">
+<h2>■Promiseと同期処理</h2>
+
+<div style="float:left;">
+<textarea id="srcarea" rows="16"></textarea><br>
+<textarea id="logarea" rows="6"></textarea><br>
+<div style="height:8px;"></div>
+</div>
+
+<div style="float:left;">
+<button type="button" onClick="test_01();">01. コールバックの連鎖</button><br>
+<button type="button" onClick="test_02();">02. Promiseの利用</button><br>
+<button type="button" onClick="test_03();">03. awaitの利用</button><br>
+<button type="button" onClick="test_04();">04. どこでもcatch()</button><br>
+<br>
+参考<br>
+→ <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise">
+Promise</a><br>
+</div>
+<br style="clear:both;">
+
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+
+</div>
+</body>
+</html>

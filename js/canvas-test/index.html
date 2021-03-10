@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>canvasに描画する</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<style>
+table { margin: 0px 0px 0px 10px; }
+th { text-align: center; padding: 0px; }
+td { font-size: 90%; padding: 0px 8px 0px 8px; }
+td.btn { padding: 0px; }
+button { width: 144px; padding: 0px; }
+</style>
+<script src="mylib.js"></script>
+<script src="s01.js"></script>
+<script src="s02.js"></script>
+<script src="s03.js"></script>
+</head>
+
+<body onload="init();">
+<div id="main">
+<p>■
+<a href="https://bucephalus.org/text/CanvasHandbook/CanvasHandbook.html">canvas API</a> で2D図形を描画する</p>
+<p>
+<input id="tbox" style="padding:2px; width:572px; border:0px;"><br>
+<canvas id="img" width="576" height="324"></canvas>
+</p>
+
+<div style="height:128px; overflow:auto">
+<table>
+<tr style="font-size:90%;">
+<th>テスト内容
+<th>実行
+
+<tr><!-- 画面クリア -->
+<td>画面クリア
+<td class="btn"><button type="button" onclick="clear_image();" disabled>画面をクリア</button>
+
+<tr><!-- 基本図形の描画 -->
+<td>基本図形の描画
+<td class="btn"><button type="button" onclick="s01.draw();" disabled>直線、円、文字</button>
+
+<tr><!-- 画像の描画 -->
+<td>画像の表示
+<td class="btn"><button type="button" onclick="s02.draw();" disabled>画像１</button>
+
+<tr><!-- "Loading Now" の描画-->
+<td>"Loading Now" の描画
+<td class="btn"><button type="button" onclick="s03.draw();" disabled>"Loading Now"</button>
+
+</table>
+</div>
+
+<br>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+
+</div>
+</body>
+</html>

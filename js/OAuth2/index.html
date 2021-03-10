@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>OAuth2</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<script>
+function get_type(obj) {
+	return (obj === null) ? '[object Null]' : Object.prototype.toString.call(obj);
+}
+/*
+function src(text)
+{
+	tsrc.value = text;
+}
+function pheader(text)
+{
+	theader.value += text + '\n';
+}
+function log(text)
+{
+	tlog.value += text + '\n';
+	tlog.style.color = 'black';
+}
+function err(text)
+{
+	log(text);
+	tlog.style.color = '#cc0000';
+}
+function clear()
+{
+	tsrc.value = '';
+	tlog.value = '';
+	theader.value = '';
+}
+function str_escape(str)
+{
+	function check(ch) {
+		let code = ch.codePointAt(0);
+		if (code >= 0x20 && code < 0x7f || code > 0x9f) { return ch; }
+		else if (code == 8) { return '\\b'; }
+		else if (code == 9) { return '\\t'; }
+		else if (code == 10) { return '\\n'; }
+		else if (code == 13) { return '\\r'; }
+		else { return '\\x' + code.toString(16).padStart(2, '0'); }
+	}
+	return str.split('').map(x => check(x)).join('');
+}
+function headers_to_str(headers)
+{
+	let ar = [];
+	for (let [k, v] of headers.entries()) {
+		ar.push(k + ': ' + str_escape(v));
+	}
+	return ar.join('\n') + '\n';
+}
+function prop_to_str(obj)
+{
+	let ar = [];
+	for (let i in obj) {
+		ar.push(i + ': ' + obj[i]);
+	}
+	return ar.join('\n') + '\n';
+}
+function dump(resp)
+{
+  pheader(resp.url);
+  pheader('ok: ' + resp.ok);
+  pheader('type: ' + resp.type);
+  pheader('status: ' + resp.status + ' ' + resp.statusText + '\n');
+  return resp.text();
+}
+
+function gettext(btn, target)
+{
+	let ar = [];
+	if (smode.value != '-') { ar.push("  mode: '" + smode.value + "'"); }
+	if (sredi.value != '-') { ar.push("  redirect: '" + sredi.value + "'"); }
+	let opts = (ar.length == 0) ? '{}' : '{\n' + ar.join(',\n') + '\n}';
+
+	let code = `
+let url = '${target}';
+let init = ${opts};
+fetch(url, init)
+.then(resp => dump(resp))
+.then(text => log(text))
+.catch(ex => err(ex.message));
+`;
+
+	clear();
+	src('●' + btn.innerHTML.trim() + code);
+	eval('(async function() { ' + code + ' })();');
+}
+*/
+
+function init()
+{
+	for (let btn of document.querySelectorAll('button')) {
+		btn.disabled = false;
+	}
+}
+window.onload = init;
+
+</script>
+
+<style>
+div#main div { padding-left:16px; }
+input { font-size:100%; }
+button { font-size:100%; width:250px; text-align:left; }
+textarea { line-height:100%; width:400px; word-break:break-all; }
+p.mini { margin:0px; padding:0px; width:250px; }
+h2 { margin:0px 0px 0px 12px; /* top right bottom left */ padding:0px; }
+div#main>div>select { height:26px; width:250px; font-size:100%;}
+div#main a:hover { background-color:#f0d0d0; }
+</style>
+</head>
+
+
+<!-- ////////// body ////////// -->
+<body>
+<div id="main">
+<h2>■OAuth2</h2>
+
+<div style="float:left;">
+<textarea id="tsrc" rows="11"></textarea><br>
+<textarea id="theader" rows="7"></textarea><br>
+<textarea id="tlog" rows="7"></textarea><br>
+</div>
+
+<div style="float:left;">
+<!--
+<select id="smode">
+	<option value="-">mode: なし (default=cors)</option>
+	<option value="same-origin">mode: same-origin</option>
+	<option value="cors">mode: cors</option>
+	<option value="no-cors">mode: no-cors</option>
+</select><br>
+<select id="sredi">
+	<option value="-">redirect: なし (default=follow)</option>
+	<option value="follow">redirect: follow</option>
+	<option value="manual">redirect: manual</option>
+	<option value="error">redirect: error</option>
+</select><br>
+<div style="height:8px;"><br></div>
+-->
+<button type="button" disabled
+	onClick="">
+	テスト</button><br>
+<br>
+
+参考<br>
+→ <a target="_" href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions/API/identity">
+identity</a><br>
+</div>
+
+<br style="clear:both;">
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>画面情報</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<script src="script.js"></script>
+</head>
+<body onLoad="screen_check();">
+<div id="main">
+<h1>画面情報</h1>
+<table style="width:96%;">
+<tr><th style="width:216px;">情報<th>値
+<tr><td>画面の向き<td id="scr_orie">
+<tr><td>画面サイズ<td id="scr_size">
+<tr><td>表示領域サイズ<td id="win_size">
+</table>
+<table style="width:96%;">
+<tr><th style="width:216px;">JavaScript<th>値
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Screen/orientation">screen.orientation</a>.<a href="https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/type">type</a><td id="scr_orie_type">
+<tr><td>screen.orientation.<a href="https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/angle">angle</a><td id="scr_orie_angle">
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Screen/width">screen.width</a><td id="scr_width">
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Screen/height">screen.height</a><td id="scr_height">
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Window/innerWidth">window.innerWidth</a><td id="win_width">
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Window/innerHeight">window.innerHeight</a><td id="win_height">
+<tr><td><a href="https://developer.mozilla.org/ja/docs/Web/API/Window/devicePixelRatio">window.devicePixelRatio</a><td id="win_dp_ratio">
+</table>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+</div>
+</body>
+</html>

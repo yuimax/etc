@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+/* ========== ページ全体 ========== */
+
+body {
+	background: url(back.png);
+	margin: 0px;
+	padding: 8px 8px 12px 8px; /* top right bottom left */
+	font-family: sans-serif, sans-serif;
+	font-size: 100%;
+}
+
+/* ========== mainブロック ========== */
+
+/* 基本は幅720ピクセルで表示 */
+div#main {
+	margin: 0px auto 0px auto; /* top right bottom left */
+	width: 720px;
+}
+
+/* レスポンシブ */
+/* 画面幅が760ピクセル以下なら、画面に合わせて表示幅を縮める */
+@media screen and (max-width: 760px) {
+	div#main {
+		width: 100%;
+	}
+}
+
+/* ========== footerブロック ========== */
+
+div#footer {
+	border: dashed gray;
+	border-width: 1px 0px 0px 0px;
+	text-align: right;
+}
+
+/* ========== p, h1, h2, h3 ========== */
+
+p, h1, h2, h3 {
+	margin: 8px 8px 8px 8px;	/* top right bottom left */
+	padding: 4px;
+}
+
+/* ========== table 関連 ========== */
+
+table {
+	border-collapse: collapse;
+	line-height: 133%;
+	margin: 16px 16px 16px 16px;	/* top right bottom left */
+	padding: 4px;
+}
+
+th {
+	background: #f0f0f0;
+	border: 1px solid gray;
+	padding: 4px 8px 3px 8px;   /* top right bottom left */
+	white-space: nowrap;
+	text-align: left;
+}
+
+td {
+	background: #ffffff;
+	border: 1px solid gray;
+	padding: 2px 8px 2px 8px;   /* top right bottom left */
+	word-wrap: break-word;
+}
+
+td.val {
+	word-break: break-all;
+}
+
+td.inp {
+	padding: 2px;
+}
+
+td.inp input {
+	border: 1px solid #C0C0C0;
+	font-size: 100%;
+}
+
+/* ========== 枠線なしテーブル ========== */
+
+table.noborder {
+	margin: 0px;
+	padding: 0px;
+}
+
+table.noborder td {
+	margin: 0px;
+	padding: 0px;
+	border-style: none;
+    background: transparent;
+}
+
+/* ========== リスト関連 ========== */
+
+ul, ol {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 24px;
+	line-height: 175%;
+}
+
+/*
+	multicolクラス内の<span>で段組み、CSS変数"--w"で段幅を指定
+
+	参考：https://qiita.com/kumazo/items/d492383c89b02c4b835e
+
+	使い方:
+		<ul class="multicol" style="--w:100px;">
+		<li><span>1段目</span><span>2段目</span>...
+		</ul>
+*/
+.multicol span {
+	float: left;
+	width: var(--w);
+}

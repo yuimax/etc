@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>JavaScriptのモジュールについて</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+<script type="module">
+
+	// ふつうのインポート:エクポート側と同じ名前でインポート
+	import { hoge, fuga } from './test.js';
+
+	// 別名でインポート:エクポート側と異なる名前でインポートできる
+	import { hoge as betu_hoge } from './test.js';
+
+	// デフォルトインポート:デフォルトエクスポートを任意の名前でインポート
+	import default_hoge from './test.js';
+
+	// モジュール名 mylib を指定してインポート
+	// インポートした hoge は、mylib.hoge としてアクセスできる
+	import * as mylib from './test.js';
+	
+	// ボタンにclickハンドラを追加する
+	//
+	// メモ:
+	//	HTMLの要素にハンドラを付加する場合、
+	//	次のようにモジュール側でハンドラを設定する必要がある
+	//	const btn = document.getElementById(id);
+	//	btn.addEventListener('click', anyfunc);	// btn.onclick = anyfunc; でもよい
+	//
+	//	次のように、HTML側でonclick属性を指定しても、ハンドラとして認識されない。
+	//	<button id="btn" onclick="anyfunc();">～</button>
+	//
+	//	これはモジュールにアクセスできるのは <script type="module"> 要素のみで、
+	//	他の要素（<button onclick="～">など）からはモジュールが見えないためだろう。
+	//
+	function add_click(id, func)
+	{
+		const out = document.getElementById('out');
+		const btn = document.getElementById(id);
+		btn.addEventListener('click', () => out.value = func() );
+	}
+	
+	add_click('btn_hoge', () => hoge(1) );
+	add_click('btn_fuga', () => fuga(22) );
+	add_click('btn_betu_hoge', () => betu_hoge(333) );
+	add_click('btn_default_hoge', () => default_hoge(4444) );
+	add_click('btn_mylib_hoge', () => mylib.hoge(55555) );
+	add_click('btn_mylib_fuga', () => mylib.fuga(666666) );
+
+</script>
+
+</head>
+<body onload="document.getElementById('out').value = '';">
+<div id="main">
+<h1>■JavaScriptのモジュール</h1>
+
+<p>参考サイト<br>
+→ <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules">
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules</a>
+</p>
+
+<p>公開サンプル<br>
+→ <a href="https://github.com/mdn/js-examples">https://github.com/mdn/js-examples</a><br>
+</p>
+
+<p>上記サンプルのコピーを、このWebサーバに置いたもの<br>
+→ <a href="samples.html">./samples.html</a><br>
+</p>
+
+<h2>●モジュールの基礎知識</h2>
+<ul>
+<li>セキュリティ的な問題で、JavaScript のモジュールは "file://～" スキームでアクセスしても動作しない。
+<li>したがってモジュール機能をローカルで試したければ、ローカルWebサーバを立てる必要がある。
+<li>モジュールを利用する場合は、&lt;script&gt; タグに type="module" を付加する。
+<div class="box">
+&lt;script <b>type="module"</b>&gt;<br>
+　　import { item } from './module.js'; <em>// "module" の中では import が使える</em><br>
+　　:<br>
+&lt;/script&gt;<br>
+</div>
+<li>モジュール機能を利用したスクリプトを外部ファイルとして読み込む場合も、
+次のように type="module" を指定する。
+<div class="box">
+&lt;script src="prog.js" <b>type="module"</b>&gt;&lt;/script&gt; <br>
+</div>
+</ul>
+
+<h2>●モジュールの機能：エクスポートとインポート</h2>
+<ul>
+<li>モジュールは、関数、変数、定数などを外部に公開できる。
+これをエクスポートと呼ぶ。
+エクスポートの書式は2つある。<br>
+<div class="box">
+export { 名前1, 名前2, ～ }; <em>// 関数、変数、定数などをエクスポートできる。</em><br>
+export default 名前; <em>// ひとつの名前だけ「デフォルトエクスポート」できる。</em><br>
+</div>
+<li>モジュールがエクスポートした名前は、
+type="module" が指定されたスクリプトの中でインポートして利用できる。
+インポートの書式は4つある。<br>
+<div class="box">
+import { 名前1, ～ } from 'ファイル名'; <em>// エクスポート時と同名で読み込む</em><br>
+import { 名前1 as 別名1, ～ } from 'ファイル名'; <em>// 別名をつけることも可能</em><br>
+import 任意の名前 from 'ファイル名'; <em>// デフォルトエクスポートを読み込む</em><br>
+import * as モジュール名 from 'ファイル名'; <em>// モジュール指定で全体を読み込む</em><br>
+</div>
+<li>ここで 'ファイル名' は、ドキュメントルートからの絶対パス、または現フォルダからの相対パスで指定する。
+先頭に <code>./</code> を付けると相対パスとみなされる（ <code>./</code> は必須）。
+<li>「モジュール名」付きの書式では、インポートした関数などは「モジュール名.元の名前」としてアクセスできる。
+</ul>
+
+<h2>●モジュールの入れ子</h2>
+<ul>
+<li>モジュールは子モジュールをインポートできる。
+そのとき、子の要素を外部に公開したければ、親が明示的に再エクスポートする必要がある。
+<div class="box">
+import { 名前 } from '子モジュール名'; <em>// 子モジュールからインポート</em><br>
+export { 名前 }; <em>// 親はそれを明示的にエクスポート</em><br>
+</div>
+<li>上の例は、次の省略形でもよい。
+<div class="box">
+export { 名前 } from '子モジュール名'; <em>// import + export</em><br>
+</div>
+</ul>
+
+<h2>●実行テスト</h2>
+<ul>
+<li>このHTMLでは、次の4つの import 文で、 <a href="./test.js">test.js</a> を読み込んでいる。
+詳細は、本HTMLのソースを参照のこと。
+<div class="box">
+import { hoge, fuga } from './test.js'; <em>// hoge(), fuga()</em><br>
+import { hoge as betu_hoge } from './test.js'; <em>// betu_hoge()</em><br>
+import default_hoge from './test.js'; <em>// default_hoge()</em><br>
+import * as mylib from './test.js'; <em>// mylib.hoge(), mylib.fuga()</em><br>
+</div>
+<li>これにより、6つの関数（実質的にはhoge()とfuga()の2つ）が利用可能となる。
+下記ボタンを押すことで、それぞれの関数の動作をテストできる。
+<div class="test">
+<input id="out" type="text" size="60"><br>
+テスト: <button id="btn_hoge"> hoge(1)</button><br>
+テスト: <button id="btn_fuga"> fuga(22)</button><br>
+テスト: <button id="btn_betu_hoge"> betu_hoge(333)</button><br>
+テスト: <button id="btn_default_hoge"> default_hoge(4444)</button><br>
+テスト: <button id="btn_mylib_hoge"> mylib.hoge(55555)</button><br>
+テスト: <button id="btn_mylib_fuga"> mylib.fuga(666666)</button><br>
+</div>
+</ul>
+
+<br>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+
+</div>
+</body>
+</html>

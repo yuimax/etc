@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>WebGLで描画する</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<style>
+table { margin: 0px 0px 0px 10px; }
+th { text-align: center; padding: 0px; }
+td { font-size: 90%; padding: 0px 8px 0px 8px; }
+td.btn { padding: 0px; }
+button { width: 144px; padding: 0px; }
+</style>
+<script src="../../lib/gl-matrix.js"></script>
+<script src="mylib.js"></script>
+<script src="s01.js"></script>
+<script src="s02.js"></script>
+<script src="s03.js"></script>
+<script src="s04.js"></script>
+<script src="s05.js"></script>
+<script src="s06.js"></script>
+<script src="s07.js"></script>
+</head>
+
+<body onload="init();">
+<div id="main">
+<p>■<a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL">WebGL入門</a> の課題を淡々とこなす</p>
+<p>
+<input id="tbox" style="padding:2px; width:380px; border:0px;"><br>
+<canvas id="img" width="384" height="200"></canvas>
+</p>
+
+<div style="height:216px; overflow:auto">
+<table>
+<tr style="font-size:90%;">
+<th>課題
+<th>実行
+
+<tr><!-- 課題：3D描画の準備 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL#Preparing_to_render_in_3D">
+課題</a> 3D描画の準備
+<td class="btn"><button type="button" onclick="s01.draw();" disabled>画面をクリア</button>
+
+<tr><!-- 課題：平面図形の描画 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Adding_2D_content_to_a_WebGL_context">
+課題</a> 平面図形の描画
+<td class="btn"><button type="button" onclick="s02.draw();" disabled>四角形を描く</button>
+
+<tr><!-- 課題：シェーダによる色の指定 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Using_shaders_to_apply_color_in_WebGL">
+課題</a> シェーダによる色の指定
+<td class="btn"><button type="button" onclick="s03.draw();" disabled>色を塗る</button>
+
+<tr><!-- 課題：アニメーション -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Animating_objects_with_WebGL">
+課題</a> アニメーション
+<td class="btn"><button type="button" onclick="s04.draw();" disabled>四角形の回転</button>
+
+<tr><!-- 課題：3D立体の描画 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Creating_3D_objects_using_WebGL">
+課題</a> 3D立体の描画
+<td class="btn"><button type="button" onclick="s05.draw();" disabled>立方体の回転</button>
+
+<tr><!-- 課題：テクスチャの使用 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Using_textures_in_WebGL">
+課題</a> テクスチャの使用
+<td class="btn"><button type="button" onclick="s06.draw();" disabled>テクスチャ表示</button>
+
+<tr><!-- 課題：照明 -->
+<td><a href="https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Lighting_in_WebGL">
+課題</a> 照明
+<td>&nbsp;</td>
+<!--
+<td class="btn"><button type="button" onclick="s07.draw();" disabled>立方体と照明</button>
+-->
+
+</table>
+</div>
+
+<div style="height:8px;"><br></div>
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+
+</div>
+</body>
+</html>

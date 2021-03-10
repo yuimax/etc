@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>XMLHttpRequest</title>
+<link rel="stylesheet" type="text/css" href="../../lib/style.css">
+<script>
+function test()
+{
+	const url = iurl.value;
+	const xhr = new XMLHttpRequest();
+	xhr.responseType = 'text';
+	xhr.onloadstart = function(e) {};
+	xhr.onerror = function(e) { tlog.value = url + ': 取得失敗'; };
+	xhr.onabort = function(e) { tlog.value = 'abort'; };
+	xhr.ontimeout = function(e) { tlog.value = 'timeout'; };
+	xhr.onload = function(e) { tlog.value = this.responseText; };
+	xhr.onloadend = function(e) {};
+	xhr.open('GET', url, true);
+	xhr.send();
+}
+function init()
+{
+	iurl.value = 'data/test.txt';
+	tlog.value = '';
+}
+</script>
+<style>
+div.box {
+	margin: 8px 16px 8px 16px;	/* top right bottom left */
+	padding: 9px;
+    border: 1px dotted black;
+    background: #e8e8e8;
+}
+</style>
+</head>
+
+<body onLoad="init();">
+<div id="main">
+<h1>XMLHttpRequest</h1>
+
+<p>
+<a href="https://ja.wikipedia.org/wiki/XMLHttpRequest">XMLHttpRequest</a>
+でWebサーバにアクセスする方法について。<br>
+<!--
+※参考： <a href="https://ja.wikipedia.org/wiki/JQuery">jqeury</a>
+-->
+</p>
+
+<h2>＊XMLHttpRequest でファイルを読み出す</h2>
+
+<p>まず同じサーバ上のファイルを XMLHttpRequest で読み出してみる。
+次のサンプルで「ファイルを読み出す」ボタンを押すと、指定したファイルの内容を表示する。
+</p>
+
+<div class="box">
+ファイル： <input id="iurl" type="text" size="24">
+<button onClick="test();">ファイルを読み出す</button>
+<br>
+<textarea id="tlog" style="width:500px;" rows="3"></textarea><br>
+</div>
+
+<p>Web上で実行すればたいていのブラウザで動作する。<br>
+※確認：FireFox、Chrome、Edge
+</p>
+
+<p>XMLHttpRequest の基本的な使い方を次に示す。</p>
+
+<div class="box">
+// (1) XMLHttpRequestを作る。<br>
+const xhr = new XMLHttpRequest();<br>
+<br>
+// (2) 成功時の処理を記述。取得したテキストは this.resultText に入っている。<br>
+xhr.onload = function(e) { this.resultText を処理 }<br>
+<br>
+// (3) 読み込みを実行する。<br>
+xhr.open('GET', 'test.txt');<br>
+xhr.send();<br>
+</div>
+
+<p>詳細は
+<a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest">XMLHttpRequest のドキュメント</a>
+等を参照のこと。<br>
+</p>
+
+
+<h2>＊ローカルPCのファイルは読めない件</h2>
+
+<p>上のスクリプトは、多くのブラウザで "file://" スキームで実行不可、
+つまりローカルPC上で実行できないように制限される。
+これを許可すると、ローカルPCの任意のファイルが読み出せるため、犯罪に悪用されるからである。<br>
+※確認：FireFox、Chrome、Edge<br>
+</p>
+
+<p>ブラウザによっては設定で制限を回避できるものもあるが、そこまでして XMLHttpRequest にこだわるメリットはない。
+</p>
+
+<div id="footer"><a href="../../">/lab/</a> に戻る</div>
+<br>
+
+</div>
+</body>
+</html>
+
