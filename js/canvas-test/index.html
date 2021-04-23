@@ -17,6 +17,7 @@ button { width: 144px; padding: 0px; }
 <script src="s01.js"></script>
 <script src="s02.js"></script>
 <script src="s03.js"></script>
+<script src="s04.js"></script>
 </head>
 
 <body onload="init();">
@@ -24,11 +25,14 @@ button { width: 144px; padding: 0px; }
 <p>■
 <a href="https://bucephalus.org/text/CanvasHandbook/CanvasHandbook.html">canvas API</a> で2D図形を描画する</p>
 <p>
-<input id="tbox" style="padding:2px; width:572px; border:0px;"><br>
+<input id="tbox" style="padding:2px; width:476px; border:0px;"><br>
+<!--
 <canvas id="img" width="576" height="324"></canvas>
+-->
+<canvas id="img" width="480" height="240"></canvas>
 </p>
 
-<div style="height:128px; overflow:auto">
+<div style="height:184px; overflow:auto">
 <table>
 <tr style="font-size:90%;">
 <th>テスト内容
@@ -46,9 +50,9 @@ button { width: 144px; padding: 0px; }
 <td>画像の表示
 <td class="btn"><button type="button" onclick="s02.draw();" disabled>画像１</button>
 
-<tr><!-- "Loading Now" の描画-->
-<td>"Loading Now" の描画
-<td class="btn"><button type="button" onclick="s03.draw();" disabled>"Loading Now"</button>
+<tr><!-- ライフゲーム -->
+<td>ライフゲームを作る
+<td class="btn"><button type="button" onclick="s04.draw();" disabled>ライフゲーム</button>
 
 </table>
 </div>
